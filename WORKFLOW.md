@@ -1,3 +1,14 @@
+## Table of Contents
+* [Project structure](#project-structure)
+* [Modules](#modules)
+* [Conventions](#conventions)
+   * [Common](#common)
+   * [Actions](#actions)
+   * [Flow types](#flow-types)
+   * [Reducers](#reducers)
+* [Data flow](#data-flow)
+* [Typical flow for creating a feature](#typical-flow-for-creating-a-feature)
+
 ## Project structure
 
 ```
