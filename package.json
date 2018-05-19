@@ -1,0 +1,39 @@
+{
+  "name": "react-redux-app",
+  "version": "0.0.0",
+  "description": "React redux app boilerplate + workflow",
+  "scripts": {
+    "serve": "webpack-dev-server --progress --config webpack/config/dev.webpack.js",
+    "build-dev": "webpack --progress --config webpack/config/dev.webpack.js"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "extend": "^3.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paska27/react-redux-app.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "boilerplate"
+  ],
+  "author": "Sergey Poskachey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paska27/react-redux-app/issues"
+  },
+  "homepage": "https://github.com/paska27/react-redux-app#readme"
+}
