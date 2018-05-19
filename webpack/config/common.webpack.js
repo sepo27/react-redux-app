@@ -22,8 +22,9 @@ module.exports = {
 
   output: {
     path: ppath.toDist('bundle'),
-    filename: 'main.js',
   },
+
+  plugins: [],
 
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
