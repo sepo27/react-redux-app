@@ -1,0 +1,5 @@
+[options]
+# TODO: find out why 'empty/object' doesn't work ???
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/dev/emptyObject'
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+include_warnings=true
