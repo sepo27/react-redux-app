@@ -1,5 +1,7 @@
 @import "../../assets/reset.css";
 
+$deepSkyBlue: #00bfff;
+
 @mixin textCenter {
   text-align: center;
 }
@@ -7,7 +9,7 @@
 .header {
   @include textCenter;
 
-  background-color: deepskyblue;
+  background-color: $deepSkyBlue;
   font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
   font-size: 20px;
 }

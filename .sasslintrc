@@ -1,0 +1,46 @@
+severity: error
+rules:
+  indentation:
+    - 2
+    -
+      size: 2
+  variable-name-format:
+    - 2
+    - convention: camelcase
+  mixin-name-format:
+    - 2
+    - convention: camelcase
+  class-name-format:
+    - 2
+    - convention: camelcase
+  property-sort-order:
+    - 0
+  no-ids:
+    - 0
+  no-css-comments:
+    - 0
+  hex-length:
+    - 0
+  hex-notation:
+    - 0
+  force-element-nesting:
+    - 0
+  single-line-per-selector:
+    - 0
+  brace-style:
+    - 2
+    - style: 1tbs
+  no-color-literals:
+    - 2
+  mixins-before-declarations:
+    - 2
+  force-pseudo-nesting:
+    - 0
+  no-trailing-whitespace:
+    - 2
+  no-qualifying-elements:
+    - 0
+  force-attribute-nesting:
+    - 0
+  pseudo-element:
+    - 0

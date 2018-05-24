@@ -7,7 +7,8 @@
     "build-dev": "webpack --progress --config webpack/config/dev.webpack.js",
     "flow": "flow status src",
     "flow-typed": "flow-typed install -r src --ignoreDeps dev",
-    "lint:eslint": "eslint --config ./.eslintrc --ext .js --ext .jsx src"
+    "lint:eslint": "eslint --config ./.eslintrc --ext .js --ext .jsx src",
+    "lint:scss": "sass-lint -c .sasslintrc src/modules/**/*.scss -v -q"
   },
   "dependencies": {
     "react": "^16.3.2",
@@ -32,6 +33,7 @@
     "flow-typed": "^2.4.0",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
+    "sass-lint": "^1.12.1",
     "sass-loader": "^7.0.1",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",
