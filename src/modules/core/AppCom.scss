@@ -1,5 +1,12 @@
+@import "../../assets/reset.css";
+
+@mixin textCenter {
+  text-align: center;
+}
 
 .header {
+  @include textCenter;
+
   background-color: deepskyblue;
   font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
   font-size: 20px;
