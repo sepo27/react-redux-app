@@ -1,6 +1,7 @@
+/* eslint-disable global-require */
+
 import React from 'react';
-import { render } from 'react-dom';
-import { AppCom } from './modules/core/AppCom';
+import {render} from 'react-dom';
 
 const renderApp = () => {
   const AppCom = require('./modules/core/AppCom').AppCom;
