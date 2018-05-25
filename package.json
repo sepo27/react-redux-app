@@ -6,13 +6,16 @@
     "serve": "webpack-dev-server --progress --config webpack/config/dev.webpack.js",
     "build-dev": "webpack --progress --config webpack/config/dev.webpack.js",
     "flow": "flow status src",
+    "flow-restart": "flow stop src && flow status src",
     "flow-typed": "flow-typed install -r src --ignoreDeps dev",
-    "lint:eslint": "eslint --config ./.eslintrc --ext .js --ext .jsx src",
+    "lint:es": "eslint --config ./.eslintrc --ext .js --ext .jsx src",
     "lint:scss": "sass-lint -c .sasslintrc src/modules/**/*.scss -v -q"
   },
   "dependencies": {
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
