@@ -159,11 +159,13 @@ export type Post {...};
 - all state is stored in redux only (not in react state)
 - possible exceptions: `TODO`
 
-## Typical flow for creating a feature
+### Typical flow for creating a feature
+- design state with flow types
 - add action (flow type / type / creator)
 - write corresponding reducer using an action
 - write test for reducer and make sure it passes
 - implement ui Component dispatching an action
 - verify data flow is correct
   - update reducer / test if needed
+- write integration test if needed
 - apply Component styles
