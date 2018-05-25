@@ -4,7 +4,7 @@ import type {AppState} from './types';
 import type {Action} from '../globalTypes';
 import {CHANGE_APP_TITLE_ACTION} from './actions';
 
-const appInitState = {
+export const appInitState = {
   title: 'React Redux App',
 };
 

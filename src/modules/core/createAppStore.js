@@ -2,8 +2,11 @@
 
 import {createStore} from 'redux';
 import {appReducer} from './appReducer';
-import type {AppStore} from './types';
+import type {AppState, AppStore} from './types';
 
-export const createAppStore = (): AppStore => createStore(
+export const createAppStore = (
+  preloadedState: AppState | typeof undefined,
+): AppStore => createStore(
   appReducer,
+  preloadedState,
 );

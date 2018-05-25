@@ -1,0 +1,6 @@
+{
+  "moduleNameMapper": {
+    "\\.(css|scss)$": "identity-obj-proxy"
+  },
+  "setupTestFrameworkScriptFile": "./jestSetup.js"
+}

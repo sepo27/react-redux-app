@@ -6,11 +6,13 @@
 
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
 
   "plugins": [
-    "flowtype"
+    "flowtype",
+    "jest"
   ],
 
   "rules": {
