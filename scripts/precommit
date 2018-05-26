@@ -32,7 +32,9 @@ then
 fi
 
 # run flow / tests
-if grepTypes "js|jsx"
+#if grepTypes "js|jsx"
+# TODO: extend and reuse grepTypes()
+if diff | grep -v webpack | grep -Eq "\.(js|jsx)$"
 then
   echo "=== Running pre-commit flow..."
   npm run flow

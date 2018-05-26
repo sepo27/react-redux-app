@@ -22,7 +22,7 @@ module.exports = deepExtend(commonConfig, {
   output: {
     publicPath: '/bundle/',
     filename: '[name].js',
-    pathinfo: true, // dump path info along with each webpack require in bundle
+    pathinfo: true, // dump path info with each webpack require in bundle
   },
 
   plugins: [
