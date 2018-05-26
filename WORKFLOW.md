@@ -57,7 +57,7 @@ modules/
   comment/
     commentReducer.js
     commentReducer.test.js
-    CommentCmp.jsx
+    CommentCom.jsx
     actions.js
     types.js
     constants.js
@@ -70,8 +70,8 @@ modules/
   posts/
     list/
       components/
-        PostsCmp.jsx
-        PostDetailCmp.jsx
+        PostsCom.jsx
+        PostDetailCom.jsx
       functions/ (aka utils)
       reducers/
         postsReducer.js
@@ -90,7 +90,7 @@ Component less module example:
 ### Common
 - no default exports
 - component file name:
-  - `Cmp` suffix
+  - `Com` suffix
   - `.jsx` extension
 
 ### Actions
@@ -130,23 +130,23 @@ export const
 
 Combined example:
 ```javascript
-// modules/posts/components/PostsCmp.jsx
+// modules/posts/components/PostsCom.jsx
 import {Post} from './types.js';
 
 type Props = {
   posts: Array<Post>,
 };
 
-export const PostsCmp = (props: Props) => (...);
+export const PostsCom = (props: Props) => (...);
 
-// modules/posts/components/PostItemCmp.jsx
+// modules/posts/components/PostItemCom.jsx
 import {Post} from './types.js';
 
 type Props = {
   post: Post,
 };
 
-export const PostCmp = (props: Props) => (...);
+export const PostCom = (props: Props) => (...);
 
 // modules/posts/types.js
 export type Post {...};
