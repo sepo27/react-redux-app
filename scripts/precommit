@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+diff() {
+  git diff-index --names-only
+}
+
+grepTypes() {
+  diff | grep -Eq "\.($1)$"
+  return $?
+}
+
+# run styles lint
+if grepTypes "scss|css"
+then
+  echo "=== Running styles lint..."
+  npm run lint:scss-sel `diff | grep -P "\.(scss|css)$"`
+fi
