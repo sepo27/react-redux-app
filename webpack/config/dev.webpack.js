@@ -12,16 +12,28 @@ module.exports = deepExtend(commonConfig, {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
-          name: 'vendor.js',
-          priority: -10
+          name: 'vendor',
+          priority: -10,
         },
       },
     },
   },
-  
+
+  output: {
+    publicPath: '/bundle/',
+    filename: '[name].js',
+    pathinfo: true, // dump path info along with each webpack require in bundle
+  },
+
+  plugins: [
+    ...commonConfig.plugins,
+    // new webpack.HotModuleReplacementPlugin()
+  ],
+
   devServer: {
     contentBase: ppath.toDist(),
     compress: true,
     port: 3000,
+    stats: 'minimal',
   },
 });
