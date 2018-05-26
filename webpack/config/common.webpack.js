@@ -48,4 +48,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
   },
+
+  stats: {
+    children: false,
+    version: false,
+    maxModules: 0, // hide modules (https://github.com/webpack/webpack/issues/4141)
+  },
 };
