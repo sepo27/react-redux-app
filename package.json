@@ -8,9 +8,10 @@
     "flow": "flow status src",
     "flow-restart": "flow stop src && flow status src",
     "flow-typed": "flow-typed install -r src --ignoreDeps dev && flow-typed install -r src jest@22.x.x && flow-typed install -r src enzyme@3.x.x",
-    "lint:es": "eslint --config ./.eslintrc --ext .js --ext .jsx src",
-    "lint:scss": "sass-lint -c .sasslintrc src/modules/**/*.scss -v -q",
+    "lint:es-sel": "eslint --config ./.eslintrc --ext .js --ext .jsx",
+    "lint:es": "npm run lint:es-sel src",
     "lint:scss-sel": "sass-lint -c .sasslintrc -v -q",
+    "lint:scss": "npm run lint:scss-sel src/modules/**/*.scss",
     "test:unit": "jest src/.*\\.test\\.jsx?",
     "precommit": "sh ./scripts/precommit"
   },

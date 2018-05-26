@@ -2,8 +2,14 @@
 
 set -e
 
+# to disable precommit hook: "git config precommit.disable 1"
+disable=`grep -Pzo '\[precommit\]\s+disable\s+=\s+1' .git/config &> /dev/null || false`
+if [ "$disable" ]; then
+  exit 0
+fi
+
 diff() {
-  git diff-index --names-only HEAD
+  git diff-index --name-only HEAD
 }
 
 grepTypes() {
@@ -14,6 +20,23 @@ grepTypes() {
 # run styles lint
 if grepTypes "scss|css"
 then
-  echo "=== Running styles lint..."
+  echo "=== Running precommit styles lint..."
   npm run lint:scss-sel `diff | grep -P "\.(scss|css)$"`
+fi
+
+# run eslint
+if grepTypes "js|jsx"
+then
+  echo "=== Running precommit eslint..."
+  npm run lint:es-sel `diff | grep -P "\.(js|jsx)$"`
+fi
+
+# run flow / tests
+if grepTypes "js|jsx"
+then
+  echo "=== Running pre-commit flow..."
+  npm run flow
+
+  echo "\n=== Running pre-commit tests..."
+  npm run test:unit
 fi
