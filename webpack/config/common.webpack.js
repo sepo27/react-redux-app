@@ -1,4 +1,4 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ppath = require('../utils/ppath');
 
 module.exports = {
@@ -30,8 +30,8 @@ module.exports = {
             },
           },
           'sass-loader',
-        ]
-      }
+        ],
+      },
     ],
   },
 
@@ -41,8 +41,8 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-    })
+      filename: '[name].css',
+    }),
   ],
 
   resolve: {

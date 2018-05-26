@@ -13,12 +13,12 @@ module.exports = deepExtend(commonConfig, {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           name: 'vendor',
-          priority: -10
+          priority: -10,
         },
       },
     },
   },
-  
+
   devServer: {
     contentBase: ppath.toDist(),
     compress: true,
