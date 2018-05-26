@@ -3,7 +3,7 @@
 set -e
 
 diff() {
-  git diff-index --names-only
+  git diff-index --names-only HEAD
 }
 
 grepTypes() {
