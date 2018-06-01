@@ -1,4 +1,5 @@
 ## Table of Contents
+* [Table of Contents](#table-of-contents)
 * [Project structure](#project-structure)
 * [Modules](#modules)
 * [Conventions](#conventions)
@@ -7,7 +8,12 @@
    * [Flow types](#flow-types)
    * [Reducers](#reducers)
 * [Data flow](#data-flow)
-* [Typical flow for creating a feature](#typical-flow-for-creating-a-feature)
+   * [Typical flow for creating a feature](#typical-flow-for-creating-a-feature)
+* [Styling](#styling)
+   * [Color variables](#color-variables)
+   * [Basic rules](#basic-rules)
+   * [Theming](#theming)
+      * [Example](#example)
 
 ## Project structure
 
@@ -169,3 +175,143 @@ export type Post {...};
   - update reducer / test if needed
 - write integration test if needed
 - apply Component styles
+
+## Styling
+Styling is done with the use of [css modules](https://github.com/css-modules/css-modules) and [sass](http://sass-lang.com/).
+
+### Color variables
+No pure color values are used, only through variables (e.g. `colors.scss`).
+Variable naming is done using [the tool](http://chir.ag/projects/name-that-color/#FCFCFC).
+
+### Basic rules
+Common classes are 'inherited' using `composes` css modules feature.
+This way no duplicate of css code (contrary to sass mixins).
+Styles file name copies component's one (e.g. `MyCom.jsx` / `MyCom.scss`).
+
+### Theming
+The styling always starts from using just `styles` for the component.
+Semantic markup is used for the component as possible.
+For small components - exposure of one `className` only in combinations with semantic markup
+is enough to theme it from outside.
+When component structure grows and multiple parts of it needs to be restyled from different places - a theming approach is used.
+The basic rules are the following:
+- extend component props with `theme` property and give it its own type (e.g. `Theme`)
+- instantiate local property / variable inside component with theme type
+- use `composeStylesTheme` to compose theme object
+- use `theme` object instead of `styles` now where appropriate
+
+#### Example
+Before theming:
+```javascript
+// MyCom.jsx
+
+import styles form './MyCom.scss';
+
+export const MyCom = () => (
+  <div className={styles.container}>
+    <header>
+      <h1 className={styles.headerTitle}>My Component</h1>
+    </header>
+    <section>
+      <div className={styles.content}>My Content</div>
+    </section>
+  </div>
+);
+```
+```css
+// MyCom.scss
+
+.container {
+  width: 300px;
+  height: 300px;
+}
+
+.container > header {
+  margin-bottom: 15px;
+}
+
+.headerTitle {
+  font-size: 16px;
+}
+
+.container > section {
+  padding: 5px;
+}
+
+.content {
+  font-size: 12px;
+}
+```
+
+*(i) NOTE*: on the specificity. Because direct children selector (`>`) is used, in order to overwrite the rules we would need to expose classes for `header` / `section` via `theme`.
+And other (e.g. `.content`) classes will need to be prepended with parent class where restyling of `MyCom` is done. (See below).
+
+After:
+```javascript
+// MyCom.jsx
+
+import styles from './MyCom.scss';
+
+type Theme = {
+  container?: string,
+  header?: string,
+  content?: string,
+};
+
+type Props = {
+  theme?: Theme,
+};
+
+const MyCom = (props: Props) => {
+  const theme: Theme = composeStylesTheme(styles, props.theme || {});
+  return (
+    <div className={theme.container}>
+      <header className={theme.header}>
+        <h1 className={styles.headerTitle}>My Component</h1>
+      </header>
+      <section>
+        <div className={theme.content}>My Content</div>
+      </section>
+    </div>
+  );
+};
+```
+*(i) NOTE:* We only replace `styles` with `theme` where needed.
+This way, shield other parts from accidental overruling and IDE continues to nicely hint on styles object.
+(`Theme` type also partly serves purpose of type hinting).
+
+Now, after 'theming' some parts of the component we can restyle it:
+```javascript
+// MyWrapperCom.jsx
+
+import styles from './MyWrapperCom.scss';
+import { MyCom } from './MyCom';
+
+export const MyWrapperCom = () => (
+  <MyCom
+    theme={{
+      container: styles.myContainer,
+      header: styles.myHeader,
+      content: styles.myContent,
+    }}
+  />
+);
+```
+```css
+// MyWrapperCom.scss
+
+.myContainer {
+  width: 500px;
+  height: 500px;
+}
+
+.myContainer > header.myHeader {
+  margin-bottom: 25px;
+}
+
+.myContainer .content {
+  font-size: 13px;
+}
+```
+
+*(i) NOTE:* how specificity is overruled because `.myContainer` parent was prepended
