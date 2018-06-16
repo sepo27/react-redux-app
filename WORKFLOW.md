@@ -7,13 +7,15 @@
    * [Actions](#actions)
    * [Flow types](#flow-types)
    * [Reducers](#reducers)
-* [Data flow](#data-flow)
-   * [Typical flow for creating a feature](#typical-flow-for-creating-a-feature)
 * [Styling](#styling)
    * [Color variables](#color-variables)
    * [Basic rules](#basic-rules)
    * [Theming](#theming)
       * [Example](#example)
+* [Typical flow when creating new features](#typical-flow-when-creating-new-features)
+   * [Data flow](#data-flow)
+   * [UI](#ui)
+   * [Parallel](#parallel)
 
 ## Project structure
 
@@ -161,21 +163,6 @@ export type Post {...};
 ### Reducers
 - fn / file name always has `Reducer` suffix
 
-## Data flow
-- all state is stored in redux only (not in react state)
-- possible exceptions: `TODO`
-
-### Typical flow for creating a feature
-- design state with flow types
-- add action (flow type / type / creator)
-- write corresponding reducer using an action
-- write test for reducer and make sure it passes
-- implement ui Component dispatching an action
-- verify data flow is correct
-  - update reducer / test if needed
-- write integration test if needed
-- apply Component styles
-
 ## Styling
 Styling is done with the use of [css modules](https://github.com/css-modules/css-modules) and [sass](http://sass-lang.com/).
 
@@ -197,7 +184,7 @@ When component structure grows and multiple parts of it needs to be restyled fro
 The basic rules are the following:
 - extend component props with `theme` property and give it its own type (e.g. `Theme`)
 - instantiate local property / variable inside component with theme type
-- use `composeStylesTheme` to compose theme object
+- use `composeStyles` (TODO: provide link) to compose theme object
 - use `theme` object instead of `styles` now where appropriate
 
 #### Example
@@ -315,3 +302,39 @@ export const MyWrapperCom = () => (
 ```
 
 *(i) NOTE:* how specificity is overruled because `.myContainer` parent was prepended
+
+## Typical flow when creating new features
+### Data flow
+1. Design the state. So a `types` file should be an outcome of this step.
+1. Write `actions`
+1. Cover each action with reducer and tests in iterations:
+    1. Write unit test for an action and fail it
+    1. Write reducer for an action
+    1. Pass the test
+1. Cover 'compound actions' with middleware and tests in iterations:
+    1. Write integration test for an action and fail it
+    1. Cover an action with the logic
+    1. Pass the test
+
+*(i)* Here integration tests implies using dispatching actions directly
+
+### UI
+At this point, when data flow is well tested we can design the UI.
+1. Write layout markup based on the wireframes
+1. Break UI onto separate logical "areas" (e.g. drop down, search box, list, etc)
+1. For each area
+    1. Update integration test to deal with real elements
+    1. Write detailed markup
+    1. Cover with styles
+    1. Add handlers
+
+### Parallel
+Working on data flow / UI can be simultaneous.
+For that:
+1. Design the state => state `types`
+1. Work on data flow as described above
+1. For UI we would need to add some stubs:
+    1. Mock state data, which will come in props eventually
+    1. Add empty event handlers
+    1. Skip integration tests for now
+1. Work on UI as described above
