@@ -40,5 +40,5 @@ then
   npm run flow
 
   echo "\n=== Running pre-commit tests..."
-  npm run test:unit
+  npm run test
 fi

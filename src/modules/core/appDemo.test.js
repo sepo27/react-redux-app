@@ -2,12 +2,12 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {createAppStore} from '../../../src/modules/core/createAppStore';
-import {AppProviderCom} from '../../../src/modules/core/AppProviderCom';
-import {AppCom} from '../../../src/modules/core/AppCom';
+import {createAppStore} from './createAppStore';
+import {AppProviderCom} from './AppProviderCom';
+import {AppCom} from './AppCom';
 
-describe('Integration tests demo', () => {
-  it('should render initial App', () => {
+describe('App', () => {
+  it('should render()', () => {
     const
       store = createAppStore({
         title: 'Test App',
@@ -23,7 +23,7 @@ describe('Integration tests demo', () => {
     });
   });
 
-  it('should change app title', () => {
+  it('should change title', () => {
     const
       store = createAppStore({
         title: 'Test App',
