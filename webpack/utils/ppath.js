@@ -1,9 +1,11 @@
-const npath = require('path');
+const path = require('path');
 
 const ROOT = `${__dirname}/../../`;
 
 module.exports = {
-  to(path = '') { return npath.normalize(`${ROOT}${path}`); },
-  toSrc(path = '') { return npath.resolve(this.to('src'), path); },
-  toDist(path = '') { return npath.resolve(this.to('dist'), path); },
+  to(...segments) { return path.resolve(path.normalize(ROOT), ...segments); },
+  toSrc(segment = '') { return this.to('src', segment); },
+  toDist(segment = '') { return this.to('dist', segment); },
+  toTest(segment = '') { return this.to('test', segment); },
+  toModules(segment = '') { return this.to('node_modules', segment); },
 };
