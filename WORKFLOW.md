@@ -173,7 +173,7 @@ Variable naming is done using [the tool](http://chir.ag/projects/name-that-color
 ### Basic rules
 Common classes are 'inherited' using `composes` css modules feature.
 This way no duplicate of css code (contrary to sass mixins).
-Styles file name copies component's one (e.g. `MyCom.jsx` / `MyCom.scss`).
+Styles files are named after component's one excluding `Com` suffix (e.g. `MyDemoCom.jsx` -> `MyDemo.scss`).
 
 ### Theming
 The styling always starts from using just `styles` for the component.
@@ -192,7 +192,7 @@ Before theming:
 ```javascript
 // MyCom.jsx
 
-import styles form './MyCom.scss';
+import styles form './My.scss';
 
 export const MyCom = () => (
   <div className={styles.container}>
@@ -206,7 +206,7 @@ export const MyCom = () => (
 );
 ```
 ```css
-// MyCom.scss
+// My.scss
 
 .container {
   width: 300px;
